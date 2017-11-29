@@ -1,0 +1,67 @@
+/*
+ * Copyright (C) 2017 A.F <http://clivern.com>
+ */
+
+// Apply the java-library plugin to add support for Java Library
+apply plugin: 'java-library'
+apply plugin: 'maven'
+
+archivesBaseName = "frog"
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    jcenter()
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
+}
+
+// Update Pom file ./gradlew updatePom
+task updatePom {
+    doLast {
+        pom {
+            project {
+                groupId 'com.clivern'
+                artifactId 'frog'
+                version '1.0.0-SNAPSHOT'
+                name 'Frog'
+                description 'A Java Framework for Social Sign In.'
+                url 'https://github.com/clivern/frog'
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                	developer {
+                		id 'clivern'
+                		name 'AF'
+                        email 'hello@clivern.com'
+                        url 'http://clivern.com'
+                        roles {
+                            role 'Software Developer'
+                        }
+                	}
+                }
+                scm {
+                    url 'https://github.com/clivern/frog'
+                	connection 'scm:git:git://github.com/clivern/frog.git'
+                	developerConnection 'scm:git:git@github.com:clivern/frog.git'
+                }
+            }
+        }.writeTo("frog.pom").writeTo("frog.xml")
+    }
+}
+
+test {
+    //we want display the following test events
+    testLogging {
+        events "PASSED", "STARTED", "FAILED", "SKIPPED"
+    }
+}
+
+dependencies {
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
