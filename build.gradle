@@ -6,9 +6,19 @@
 apply plugin: 'java-library'
 apply plugin: 'maven'
 
+// ###############################
+// ## REMOVE AFTER BETA RELEASE ##
+apply plugin: 'application'
+// ###############################
+
 archivesBaseName = "frog"
 version = '1.0.0-SNAPSHOT'
 
+// ####################################
+// ## REMOVE AFTER BETA RELEASE #######
+mainClassName = "com.clivern.frog.Test"
+// ####################################
+//
 repositories {
     jcenter()
     mavenCentral()
@@ -62,6 +72,14 @@ test {
 }
 
 dependencies {
-    // Use JUnit test framework
+    // ####################################
+    // ## REMOVE AFTER BETA RELEASE #######
+    compile 'com.sparkjava:spark-core:2.6.0'
+    compile 'org.slf4j:slf4j-api:1.7.13'
+    compile 'org.slf4j:slf4j-simple:1.7.13'
+    // ####################################
+
     testImplementation 'junit:junit:4.12'
+    compile 'com.squareup.okhttp3:okhttp:3.9.1'
+    compile 'org.json:json:20170516'
 }
