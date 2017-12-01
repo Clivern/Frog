@@ -11,14 +11,14 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.clivern.frog.contract;
+package com.clivern.frog.util;
 
 /**
- * Provider Base Class
+ * Request Class
  *
  * @author A.F
  * @since 1.0.0
  */
-abstract class Provider {
+public class Request {
 
 }
