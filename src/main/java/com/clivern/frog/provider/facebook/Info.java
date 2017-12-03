@@ -25,39 +25,43 @@ public class Info {
 
     public static final String oauthURL = "https://www.facebook.com/v2.11/dialog/oauth";
 
+    public static final String accessTokenURL = "https://graph.facebook.com/v2.11/oauth/access_token";
+
+    public static final String inspectAccessTokenURL = "https://graph.facebook.com/debug_token";
+
     /**
      * Get Oauth URL (Login URL)
      *
-     * @param  client_id              The ID of your app, found in your app's dashboard.
-     * @param  redirect_uri           The URL that you want to redirect the person logging in back to
+     * @param  clientId              The ID of your app, found in your app's dashboard.
+     * @param  redirectUri           The URL that you want to redirect the person logging in back to
      * @param  state                  An arbitrary unique string created by your app to guard against Cross-site Request Forgery.
-     * @param  response_type          Determines whether the response data included when the redirect back to the app occurs is in URL parameters or fragments
+     * @param  responseType          Determines whether the response data included when the redirect back to the app occurs is in URL parameters or fragments
      * @param  scope                  A comma separated list of Permissions to request from the person using your app.
      * @return String
      * @throws InvalidProviderConfigs
      */
-    public static final String getOauthURL(String client_id, String redirect_uri, String state, String response_type, String scope) throws InvalidProviderConfigs
+    public static final String getOauthURL(String clientId, String redirectUri, String state, String responseType, String scope) throws InvalidProviderConfigs
     {
         String url = Info.oauthURL;
 
-        if( client_id.isEmpty() || redirect_uri.isEmpty() || state.isEmpty() ){
+        if( clientId.isEmpty() || redirectUri.isEmpty() || state.isEmpty() ){
             throw new InvalidProviderConfigs("Facebook Oauth URL is Invalid! This may be due to missing Client ID, Redirect URI or State.");
         }
 
-        if( !client_id.isEmpty() ){
-            url += "?client_id=" + client_id;
+        if( !clientId.isEmpty() ){
+            url += "?client_id=" + clientId;
         }
 
-        if( !redirect_uri.isEmpty() ){
-            url += "&redirect_uri=" + redirect_uri;
+        if( !redirectUri.isEmpty() ){
+            url += "&redirect_uri=" + redirectUri;
         }
 
         if( !state.isEmpty() ){
             url += "&state=" + state;
         }
 
-        if( !response_type.isEmpty() ){
-            url += "&response_type=" + response_type;
+        if( !responseType.isEmpty() ){
+            url += "&response_type=" + responseType;
         }
 
         if( !scope.isEmpty() ){
@@ -70,42 +74,106 @@ public class Info {
     /**
      * Get Declined Oauth URL (Re-asking for Declined Permissions)
      *
-     * @param  client_id              The ID of your app, found in your app's dashboard.
-     * @param  redirect_uri           The URL that you want to redirect the person logging in back to
+     * @param  clientId              The ID of your app, found in your app's dashboard.
+     * @param  redirectUri           The URL that you want to redirect the person logging in back to
      * @param  state                  An arbitrary unique string created by your app to guard against Cross-site Request Forgery.
-     * @param  response_type          Determines whether the response data included when the redirect back to the app occurs is in URL parameters or fragments
+     * @param  responseType          Determines whether the response data included when the redirect back to the app occurs is in URL parameters or fragments
      * @param  scope                  A comma separated list of Permissions to request from the person using your app.
      * @return String
      * @throws InvalidProviderConfigs
      */
-    public static final String getDeclinedOauthURL(String client_id, String redirect_uri, String state, String response_type, String scope) throws InvalidProviderConfigs
+    public static final String getDeclinedOauthURL(String clientId, String redirectUri, String state, String responseType, String scope) throws InvalidProviderConfigs
     {
         String url = Info.oauthURL;
 
-        if( client_id.isEmpty() || redirect_uri.isEmpty() || state.isEmpty() ){
+        if( clientId.isEmpty() || redirectUri.isEmpty() || state.isEmpty() ){
             throw new InvalidProviderConfigs("Facebook Oauth URL is Invalid! This may be due to missing Client ID, Redirect URI or State.");
         }
 
-        if( !client_id.isEmpty() ){
-            url += "?client_id=" + client_id;
+        if( !clientId.isEmpty() ){
+            url += "?client_id=" + clientId;
         }
 
         url += "&auth_type=rerequest";
 
-        if( !redirect_uri.isEmpty() ){
-            url += "&redirect_uri=" + redirect_uri;
+        if( !redirectUri.isEmpty() ){
+            url += "&redirect_uri=" + redirectUri;
         }
 
         if( !state.isEmpty() ){
             url += "&state=" + state;
         }
 
-        if( !response_type.isEmpty() ){
-            url += "&response_type=" + response_type;
+        if( !responseType.isEmpty() ){
+            url += "&response_type=" + responseType;
         }
 
         if( !scope.isEmpty() ){
             url += "&scope=" + scope;
+        }
+
+        return url;
+    }
+
+    /**
+     * Get Access Token URL
+     *
+     * @param  clientId               Your app's IDs
+     * @param  redirectUri            This argument is required and must be the same as the original request_uri that you used when starting the OAuth login process.
+     * @param  clientSecret           Your unique app secret, shown on the App Dashboard.
+     * @param  code                   The parameter received from the Login Dialog redirect.
+     * @return String
+     * @throws InvalidProviderConfigs
+     */
+    public static final String getAccessTokenURL(String clientId, String redirectUri, String clientSecret, String code) throws InvalidProviderConfigs
+    {
+        String url = Info.inspectAccessTokenURL;
+
+        if( clientId.isEmpty() || redirectUri.isEmpty() || clientSecret.isEmpty() || code.isEmpty() ){
+            throw new InvalidProviderConfigs("Facebook Access Token URL is Invalid! This may be due to missing Client ID, Redirect URI, Client Secret or Code.");
+        }
+
+        if( !clientId.isEmpty() ){
+            url += "?client_id=" + clientId;
+        }
+
+        if( !redirectUri.isEmpty() ){
+            url += "&redirect_uri=" + redirectUri;
+        }
+
+        if( !clientSecret.isEmpty() ){
+            url += "&client_secret=" + clientSecret;
+        }
+
+        if( !code.isEmpty() ){
+            url += "&code=" + code;
+        }
+
+        return url;
+    }
+
+    /**
+     * Inspect Access Token
+     *
+     * @param  inputToken  The token you need to inspect.
+     * @param  accessToken An app access token or an access token for a developer of the app.
+     * @return String
+     * @throws InvalidProviderConfigs
+     */
+    public static final String getInspectAccessTokenURL(String inputToken, String accessToken) throws InvalidProviderConfigs
+    {
+        String url = Info.inspectAccessTokenURL;
+
+        if( inputToken.isEmpty() || accessToken.isEmpty() ){
+            throw new InvalidProviderConfigs("Facebook Inspect Access Token URL is Invalid! This may be due to missing Input Token or Access Token.");
+        }
+
+        if( !inputToken.isEmpty() ){
+            url += "?input_token=" + inputToken;
+        }
+
+        if( !accessToken.isEmpty() ){
+            url += "&access_token=" + accessToken;
         }
 
         return url;
