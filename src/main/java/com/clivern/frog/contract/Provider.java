@@ -15,7 +15,6 @@ package com.clivern.frog.contract;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import com.clivern.frog.util.*;
 
 /**
@@ -26,7 +25,7 @@ import com.clivern.frog.util.*;
  * @author A.F
  * @since 1.0.0
  */
-abstract class Provider {
+public abstract class Provider {
 
     protected final Config config;
     protected final Request request;
