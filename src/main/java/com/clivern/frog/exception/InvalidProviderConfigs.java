@@ -11,14 +11,33 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.clivern.frog.provider.twitter;
+package com.clivern.frog.exception;
 
 /**
- * Twitter Provider Class
+ * Provider Configs Not Valid Custom Exception
  *
  * @author A.F
  * @since 1.0.0
  */
-public class Twitter {
+public class InvalidProviderConfigs extends Exception {
 
+    /**
+     * Class Constructor
+     *
+     * @param  exception
+     */
+    public InvalidProviderConfigs(Exception exception)
+    {
+        super(exception);
+    }
+
+    /**
+     * Class Constructor
+     *
+     * @param  exception
+     */
+    public InvalidProviderConfigs(String message)
+    {
+        super(message);
+    }
 }
