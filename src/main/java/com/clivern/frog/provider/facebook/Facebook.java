@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import com.clivern.frog.util.*;
 import com.clivern.frog.contract.Provider;
+import com.clivern.frog.provider.facebook.Info;
 
 /**
  * Facebook Provider Class
