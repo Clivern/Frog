@@ -29,10 +29,14 @@ public class Google extends Provider {
 
     /**
      * Class Constructor
+     *
+     * @param  config
+     * @param  fetcher
+     * @param  options
      */
-    public Google(Config config, Request request, Map<String, String> options)
+    public Google(Config config, Fetcher fetcher, Map<String, String> options)
     {
-        super(config, request, options);
+        super(config, fetcher, options);
     }
 
     /**

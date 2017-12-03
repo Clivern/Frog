@@ -28,7 +28,7 @@ import com.clivern.frog.util.*;
 public abstract class Provider {
 
     protected final Config config;
-    protected final Request request;
+    protected final Fetcher fetcher;
     protected Map<String, String> options = new HashMap<String, String>();
     protected Map<String, String> authData = new HashMap<String, String>();
     protected Map<String, String> accessData = new HashMap<String, String>();
@@ -36,11 +36,15 @@ public abstract class Provider {
 
     /**
      * Class Constructor
+     *
+     * @param  config
+     * @param  fetcher
+     * @param  options
      */
-    public Provider(Config config, Request request, Map<String, String> options)
+    public Provider(Config config, Fetcher fetcher, Map<String, String> options)
     {
         this.config = config;
-        this.request = request;
+        this.fetcher = fetcher;
         this.options = options;
     }
 

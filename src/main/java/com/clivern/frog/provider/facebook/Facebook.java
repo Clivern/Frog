@@ -29,10 +29,14 @@ public class Facebook extends Provider {
 
     /**
      * Class Constructor
+     *
+     * @param  config
+     * @param  fetcher
+     * @param  options
      */
-    public Facebook(Config config, Request request, Map<String, String> options)
+    public Facebook(Config config, Fetcher fetcher, Map<String, String> options)
     {
-        super(config, request, options);
+        super(config, fetcher, options);
     }
 
     /**

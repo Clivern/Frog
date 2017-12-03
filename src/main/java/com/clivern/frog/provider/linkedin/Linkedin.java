@@ -29,10 +29,14 @@ public class Linkedin extends Provider {
 
     /**
      * Class Constructor
+     *
+     * @param  config
+     * @param  fetcher
+     * @param  options
      */
-    public Linkedin(Config config, Request request, Map<String, String> options)
+    public Linkedin(Config config, Fetcher fetcher, Map<String, String> options)
     {
-        super(config, request, options);
+        super(config, fetcher, options);
     }
 
     /**
