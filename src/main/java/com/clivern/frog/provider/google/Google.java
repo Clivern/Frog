@@ -13,12 +13,86 @@
  */
 package com.clivern.frog.provider.google;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.clivern.frog.util.*;
+import com.clivern.frog.contract.Provider;
+import com.clivern.frog.provider.google.Info;
+
 /**
  * Google Provider Class
  *
  * @author A.F
  * @since 1.0.0
  */
-public class Google {
+public class Google extends Provider {
 
+    /**
+     * Class Constructor
+     */
+    public Google(Config config, Request request, Map<String, String> options)
+    {
+        super(config, request, options);
+    }
+
+    /**
+     * Get Auth Link
+     *
+     * @return String
+     */
+    public String getAuthLink()
+    {
+        return "";
+    }
+
+    /**
+     * Receive Auth Data
+     *
+     * @param authData
+     * @return String
+     */
+    public Boolean receiveAuthData(Map<String, String> authData)
+    {
+        return true;
+    }
+
+    /**
+     * Exchange Access Token
+     *
+     * @return String
+     */
+    public Boolean exchangeAccessToken()
+    {
+        return true;
+    }
+
+    /**
+     * Is Access Token Expired
+     *
+     * @return String
+     */
+    public Boolean isAccessTokenExpired()
+    {
+        return true;
+    }
+
+    /**
+     * Refresh Access Token
+     *
+     * @return String
+     */
+    public Boolean refreshAccessToken()
+    {
+        return true;
+    }
+
+    /**
+     * Fetch User Data
+     *
+     * @return String
+     */
+    public Boolean fetchUserData()
+    {
+        return true;
+    }
 }
