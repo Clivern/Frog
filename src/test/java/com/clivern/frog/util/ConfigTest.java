@@ -29,8 +29,9 @@ public class ConfigTest extends TestCase {
 	 */
     public void testGetConfig()
     {
-        Config.instance().set("app_name", "Frog");
-        assertEquals(Config.instance().get("app_name", ""), "Frog");
+        Config config = new Config();
+        config.set("app_name", "Frog");
+        assertEquals(config.get("app_name", ""), "Frog");
     }
 
     /**
@@ -40,8 +41,9 @@ public class ConfigTest extends TestCase {
      */
     public void testStorePropFile() throws IOException
     {
-    	Config.instance().set("app_name", "Frog Changed");
-    	Config.instance().storePropertiesFile("src/main/java/resources/test_config.properties");
+        Config config = new Config();
+    	config.set("app_name", "Frog Changed");
+    	config.storePropertiesFile("src/main/java/resources/test_config.properties");
     }
 
     /**
@@ -51,7 +53,7 @@ public class ConfigTest extends TestCase {
      */
     public void testLoadPropFile() throws IOException
     {
-    	Config.instance().loadPropertiesFile("src/main/java/resources/test_config.properties");
-    	assertEquals(Config.instance().get("app_name", ""), "Frog Changed");
+        Config config = new Config("src/main/java/resources/test_config.properties");
+    	assertEquals(config.get("app_name", ""), "Frog Changed");
     }
 }

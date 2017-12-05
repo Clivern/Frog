@@ -35,26 +35,20 @@ public class Config {
      */
     protected Map<String, String> configs = new HashMap<String, String>();
 
-    /**
-     * @var Config
-     */
-    private static Config instance;
 
     /**
      * Constructor
      */
-    protected Config() { }
+    public Config(){ }
 
     /**
-     * Get Instance
+     * Constructor
      *
-     * @return Config
+     * @param path
      */
-    public static Config instance() {
-        if(instance == null) {
-            instance = new Config();
-        }
-        return instance;
+    public Config(String path) throws IOException
+    {
+        this.loadPropertiesFile(path);
     }
 
     /**
