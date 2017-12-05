@@ -38,11 +38,14 @@ public abstract class FetcherParser {
     }
 
     /**
-     * Parse the response
+     * Get Response
      *
-     * @return Boolean
+     * @return  String
      */
-    abstract public Boolean parse();
+    public String getResponse()
+    {
+        return this.response;
+    }
 
     /**
      * Get Parsed Data
@@ -53,4 +56,22 @@ public abstract class FetcherParser {
     {
         return this.parsedData;
     }
+
+    /**
+     * Set Parsed Item
+     *
+     * @param key
+     * @param value
+     */
+    public void setParsedItem(String key, String value)
+    {
+        this.parsedData.put(key, value);
+    }
+
+    /**
+     * Parse the response
+     *
+     * @return Boolean
+     */
+    abstract public Boolean parse();
 }
