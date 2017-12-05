@@ -220,4 +220,60 @@ public class FetcherData {
     {
         return this.formItems;
     }
+
+    @Override
+    public String toString()
+    {
+        String data = "";
+        data += "URL: " + this.url + "\n";
+        data += "Method: " + this.method + "\n";
+        data += "Body Type: " + this.bodyType + "\n";
+        data += "Body: " + this.body + "\n";
+
+        // Add Headers
+        data += "Headers: ";
+        data += "{";
+        if( !this.headers.isEmpty() ){
+            for(String key : this.headers.keySet()) {
+                data += key + ":" + this.headers.get(key) + ",";
+            }
+        }
+        data = data.replaceAll(",$", "");
+        data += "}\n";
+
+        // Add URL Parameters
+        data += "URL Parameters: ";
+        data += "{";
+        if( !this.urlParameters.isEmpty() ){
+            for(String key : this.urlParameters.keySet()) {
+                data += key + ":" + this.urlParameters.get(key) + ",";
+            }
+        }
+        data = data.replaceAll(",$", "");
+        data += "}\n";
+
+        // Add Cookies
+        data += "Cookies: ";
+        data += "{";
+        if( !this.cookies.isEmpty() ){
+            for(String key : this.cookies.keySet()) {
+                data += key + ":" + this.cookies.get(key) + ",";
+            }
+        }
+        data = data.replaceAll(",$", "");
+        data += "}\n";
+
+        // Add Form Data
+        data += "Form Data: ";
+        data += "{";
+        if( !this.formItems.isEmpty() ){
+            for(String key : this.formItems.keySet()) {
+                data += key + ":" + this.formItems.get(key) + ",";
+            }
+        }
+        data = data.replaceAll(",$", "");
+        data += "}\n";
+
+        return data;
+    }
 }

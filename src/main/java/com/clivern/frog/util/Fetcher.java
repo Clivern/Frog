@@ -74,4 +74,12 @@ public class Fetcher {
         }
         throw new InvalidResponseData("Error Parsing Response Data!");
     }
+
+    @Override
+    public String toString()
+    {
+        String data = "";
+        data += (String) this.fetcherData.toString();
+        return data;
+    }
 }
