@@ -27,8 +27,8 @@ import com.clivern.frog.util.*;
  */
 public abstract class Provider {
 
-    protected final Config config;
-    protected final Fetcher fetcher;
+    protected Config config;
+    protected Fetcher fetcher;
     protected Map<String, String> options = new HashMap<String, String>();
     protected Map<String, String> authData = new HashMap<String, String>();
     protected Map<String, String> accessData = new HashMap<String, String>();

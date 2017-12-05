@@ -127,7 +127,7 @@ public class Info {
      */
     public static final String getAccessTokenURL(String clientId, String redirectUri, String clientSecret, String code) throws InvalidProviderConfigs
     {
-        String url = Info.inspectAccessTokenURL;
+        String url = Info.accessTokenURL;
 
         if( clientId.isEmpty() || redirectUri.isEmpty() || clientSecret.isEmpty() || code.isEmpty() ){
             throw new InvalidProviderConfigs("Facebook Access Token URL is Invalid! This may be due to missing Client ID, Redirect URI, Client Secret or Code.");

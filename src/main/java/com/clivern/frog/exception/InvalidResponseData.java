@@ -11,14 +11,33 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package com.clivern.frog.provider.twitter;
+package com.clivern.frog.exception;
 
 /**
- * Twitter Parser Class
+ * Invalid Response Data Custom Exception
  *
  * @author A.F
  * @since 1.0.0
  */
-public class Parser {
+public class InvalidResponseData extends Exception {
 
+    /**
+     * Class Constructor
+     *
+     * @param  exception
+     */
+    public InvalidResponseData(Exception exception)
+    {
+        super(exception);
+    }
+
+    /**
+     * Class Constructor
+     *
+     * @param  exception
+     */
+    public InvalidResponseData(String message)
+    {
+        super(message);
+    }
 }

@@ -23,4 +23,56 @@ import com.clivern.frog.exception.InvalidProviderConfigs;
  */
 public class Info {
 
+	public static final String authenticateURL = "https://api.twitter.com/oauth/authenticate";
+
+	public static final String requestTokenURL = "https://api.twitter.com/oauth/request_token";
+
+	public static final String accessTokenURL = "https://api.twitter.com/oauth/access_token";
+
+	public static final String userDetailsURL = "https://api.twitter.com/1.1/account/verify_credentials.json";
+
+
+	public static final String getAuthenticateURL(String oauthToken, String forceLogin, String screenName) throws InvalidProviderConfigs
+	{
+		String url = Info.authenticateURL;
+
+        if( oauthToken.isEmpty() ){
+            throw new InvalidProviderConfigs("Twitter Authenticate URL is Invalid! This may be due to missing Oauth Token.");
+        }
+
+        if( !oauthToken.isEmpty() ){
+            url += "?oauth_token=" + oauthToken;
+        }
+
+        if( !forceLogin.isEmpty() ){
+            url += "&force_login=" + forceLogin;
+        }
+
+        if( !screenName.isEmpty() ){
+            url += "&screen_name=" + screenName;
+        }
+
+		return url;
+	}
+
+	public static final String getRequestTokenURL() throws InvalidProviderConfigs
+	{
+		String url = Info.requestTokenURL;
+
+		return url;
+	}
+
+	public static final String getAccessTokenURL() throws InvalidProviderConfigs
+	{
+		String url = Info.accessTokenURL;
+
+		return url;
+	}
+
+	public static final String getUserDetailsURL() throws InvalidProviderConfigs
+	{
+		String url = Info.userDetailsURL;
+
+		return url;
+	}
 }

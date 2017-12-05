@@ -13,12 +13,17 @@
  */
 package com.clivern.frog.util;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.io.IOException;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import com.clivern.frog.contract.FetcherParser;
+import com.clivern.frog.util.FetcherData;
+import com.clivern.frog.exception.InvalidResponseData;
 
 /**
  * Fetcher Class
@@ -29,41 +34,44 @@ import okhttp3.Response;
 public class Fetcher {
 
     private OkHttpClient client = new OkHttpClient();
-
-    private MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    private FetcherData fetcherData;
+    private FetcherParser fetcherParser;
+    private String response = "";
 
     /**
-     * Perform Get Request
+     * Class Constructor
      *
-     * @param  url
-     * @return String
-     * @throws IOException
+     * @param  fetcherData
+     * @param  fetcherParser
      */
-    public String get(String url) throws IOException
+    public Fetcher(FetcherData fetcherData, FetcherParser fetcherParser)
     {
-        Request request = new Request.Builder().url(url).build();
-
-        try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
-        }
+        this.fetcherData = fetcherData;
+        this.fetcherParser = fetcherParser;
     }
 
     /**
-     * Perform Post Request
+     * Execute The Fetcher
      *
-     * @param  url
-     * @param  body
-     * @return String
-     * @throws IOException
+     * @return Boolean
      */
-    public String post(String url, String body) throws IOException
+    public Boolean exec()
     {
-        RequestBody requestBody = RequestBody.create(this.JSON, body);
+        return true;
+    }
 
-        Request request = new Request.Builder().url(url).post(requestBody).build();
-
-        try (Response response = client.newCall(request).execute()) {
-            return response.body().string();
+    /**
+     * Get Response
+     *
+     * @return Map<String, String>
+     * @throws InvalidResponseData
+     */
+    public Map<String, String> getResponse() throws InvalidResponseData
+    {
+        this.fetcherParser.setResponse(this.response);
+        if( this.fetcherParser.parse() ){
+            return this.fetcherParser.getParsedData();
         }
+        throw new InvalidResponseData("Error Parsing Response Data!");
     }
 }
