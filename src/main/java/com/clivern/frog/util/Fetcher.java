@@ -75,6 +75,9 @@ public class Fetcher {
         throw new InvalidResponseData("Error Parsing Response Data!");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {

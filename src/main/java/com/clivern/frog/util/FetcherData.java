@@ -221,6 +221,9 @@ public class FetcherData {
         return this.formItems;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString()
     {
