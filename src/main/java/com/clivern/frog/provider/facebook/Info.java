@@ -18,6 +18,8 @@ import com.clivern.frog.exception.InvalidProviderConfigs;
 /**
  * Facebook Info Class
  *
+ * For More Info, Please Check <a href="https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow">Facebook Manual Login</a>
+ *
  * @author A.F
  * @since 1.0.0
  */
