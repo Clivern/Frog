@@ -31,7 +31,15 @@ public class Info {
 
 	public static final String userDetailsURL = "https://api.twitter.com/1.1/account/verify_credentials.json";
 
-
+	/**
+	 * Get Authenticate URL
+	 *
+	 * @param  oauthToken App Oauth Token.
+	 * @param  forceLogin Forces the user to enter their credentials to ensure the correct users account is authorized.
+	 * @param  screenName Prefills the username input box of the OAuth login screen with the given value.
+	 * @return String
+	 * @throws InvalidProviderConfigs
+	 */
 	public static final String getAuthenticateURL(String oauthToken, String forceLogin, String screenName) throws InvalidProviderConfigs
 	{
 		String url = Info.authenticateURL;
@@ -55,23 +63,49 @@ public class Info {
 		return url;
 	}
 
-	public static final String getRequestTokenURL() throws InvalidProviderConfigs
+	/**
+	 * Get Request Token URL
+	 *
+	 * @return String
+	 */
+	public static final String getRequestTokenURL()
 	{
-		String url = Info.requestTokenURL;
-
-		return url;
+		return Info.requestTokenURL;
 	}
 
-	public static final String getAccessTokenURL() throws InvalidProviderConfigs
+	/**
+	 * Get Access Token URL
+	 *
+	 * @return String
+	 */
+	public static final String getAccessTokenURL()
 	{
-		String url = Info.accessTokenURL;
-
-		return url;
+		return Info.accessTokenURL;
 	}
 
-	public static final String getUserDetailsURL() throws InvalidProviderConfigs
+	/**
+	 * Get User Details URL
+	 *
+	 * @param  includeEntities        The entities node will not be included when set to false.
+	 * @param  skipStatus             When set to either true , t or 1 statuses will not be included in the returned user object.
+	 * @param  includeEmail           When set to true email will be returned in the user objects as a string.
+	 * @return String
+	 */
+	public static final String getUserDetailsURL(String includeEntities, String skipStatus, String includeEmail)
 	{
 		String url = Info.userDetailsURL;
+
+        if( !includeEntities.isEmpty() ){
+            url += (url.equals(Info.userDetailsURL)) ? "?include_entities=" + includeEntities : "&include_entities=" + includeEntities;
+        }
+
+        if( !skipStatus.isEmpty() ){
+            url += (url.equals(Info.userDetailsURL)) ? "?skip_status=" + skipStatus : "&skip_status=" + skipStatus;
+        }
+
+        if( !includeEmail.isEmpty() ){
+            url += (url.equals(Info.userDetailsURL)) ? "?include_email=" + includeEmail : "&include_email=" + includeEmail;
+        }
 
 		return url;
 	}
