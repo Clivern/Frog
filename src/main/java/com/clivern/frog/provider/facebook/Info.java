@@ -25,7 +25,7 @@ import com.clivern.frog.exception.InvalidProviderConfigs;
  */
 public class Info {
 
-    public static final String oauthURL = "https://www.facebook.com/v2.11/dialog/oauth";
+    public static final String authenticateURL = "https://www.facebook.com/v2.11/dialog/oauth";
 
     public static final String accessTokenURL = "https://graph.facebook.com/v2.11/oauth/access_token";
 
@@ -42,9 +42,9 @@ public class Info {
      * @return String
      * @throws InvalidProviderConfigs
      */
-    public static final String getOauthURL(String clientId, String redirectUri, String state, String responseType, String scope) throws InvalidProviderConfigs
+    public static final String getAuthenticationURL(String clientId, String redirectUri, String state, String responseType, String scope) throws InvalidProviderConfigs
     {
-        String url = Info.oauthURL;
+        String url = Info.authenticateURL;
 
         if( clientId.isEmpty() || redirectUri.isEmpty() || state.isEmpty() ){
             throw new InvalidProviderConfigs("Facebook Oauth URL is Invalid! This may be due to missing Client ID, Redirect URI or State.");
@@ -84,9 +84,9 @@ public class Info {
      * @return String
      * @throws InvalidProviderConfigs
      */
-    public static final String getDeclinedOauthURL(String clientId, String redirectUri, String state, String responseType, String scope) throws InvalidProviderConfigs
+    public static final String getDeclinedAuthenticationURL(String clientId, String redirectUri, String state, String responseType, String scope) throws InvalidProviderConfigs
     {
-        String url = Info.oauthURL;
+        String url = Info.authenticateURL;
 
         if( clientId.isEmpty() || redirectUri.isEmpty() || state.isEmpty() ){
             throw new InvalidProviderConfigs("Facebook Oauth URL is Invalid! This may be due to missing Client ID, Redirect URI or State.");
