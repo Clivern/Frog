@@ -31,6 +31,8 @@ public class Info {
 
     public static final String inspectAccessTokenURL = "https://graph.facebook.com/debug_token";
 
+    public static final String profileURL = "https://graph.facebook.com/v2.11/me";
+
     /**
      * Get Oauth URL (Login URL)
      *
@@ -176,6 +178,23 @@ public class Info {
 
         if( !accessToken.isEmpty() ){
             url += "&access_token=" + accessToken;
+        }
+
+        return url;
+    }
+
+    /**
+     * Get Profile URL
+     *
+     * @param  fields The field list for example 'id,name'
+     * @return String
+     */
+    public static final String getProfileURL(String fields)
+    {
+        String url = Info.profileURL;
+
+        if( !fields.isEmpty() ){
+            url += "?fields=" + fields;
         }
 
         return url;
